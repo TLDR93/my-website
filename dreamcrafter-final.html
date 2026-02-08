@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamCrafter OPS™ | Operations That Work With Your Brain</title>
+    <meta name="description" content="ADHD-aware operations architecture for course creators and coaches. CORE OS™ builds structure that respects how your brain actually works.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Luxury Palette - Champagne, Navy & Warm Accents */
+            --champagne: #F7E7CE;
+            --champagne-light: #FDF6E9;
+            --champagne-dark: #D4C4A8;
+            --gold: #C9A962;
+            --gold-light: #E8D5A3;
+            --gold-glow: rgba(201, 169, 98, 0.4);
+            --navy: #0A1628;
+            --navy-light: #152238;
+            --navy-medium: #1E3A5F;
+            --slate: #64748B;
+            --white: #FFFFFF;
+            --off-white: #FAFAF8;
+            --black: #030712;
+            
+            /* Accent for ADHD-specific elements */
+            --accent-warm: #E07A5F;
+            --accent-calm: #81B29A;
+            --accent-energy: #F2CC8F;
+            
+            /* Typography */
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Outfit', -apple-system, sans-serif;
+            
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+            --space-xl: 6rem;
+            --space-2xl: 10rem;
+            
+            /* Transitions */
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Base Reset */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { 
+            scroll-behavior: smooth; 
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body { 
+            font-family: var(--font-body); 
+            font-weight: 300;
+            line-height: 1.8; 
+            color: var(--navy);
+            background: var(--off-white);
+            overflow-x: hidden;
+        }
+
+        ::selection { background: var(--gold); color: var(--navy); }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 { 
+            font-family: var(--font-display); 
+            font-weight: 400; 
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+        
+        h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); }
+        h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+        h4 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+        
+        p { 
+            font-size: 1.1rem; 
+            max-width: 60ch;
+            font-weight: 300;
+        }
+        
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        strong { font-weight: 500; }
+        
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 0 clamp(1.5rem, 5vw, 4rem); 
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           NAVIGATION
+           ══════════════════════════════════════════════════════════════ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all 0.5s var(--ease-smooth);
+        }
+        
+        .nav.scrolled {
+            background: rgba(10, 22, 40, 0.97);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 0.03em;
+        }
+        
+        .nav-logo span { color: var(--gold); font-style: italic; }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-link {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: all 0.3s var(--ease-smooth);
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.4s var(--ease-smooth);
+        }
+        
+        .nav-link:hover { color: var(--white); }
+        .nav-link:hover::after { width: 100%; }
+        
+        .nav-cta {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            transition: all 0.4s var(--ease-smooth);
+        }
+        
+        .nav-cta:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+        
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            background: none;
+            border: none;
+        }
+        
+        .mobile-toggle span {
+            width: 26px;
+            height: 1px;
+            background: var(--white);
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           BUTTONS
+           ══════════════════════════════════════════════════════════════ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.1rem 2.5rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.5s var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s var(--ease-smooth);
+        }
+        
+        .btn:hover::before { left: 100%; }
+        
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+        }
+        
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px var(--gold-glow);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: var(--white);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+        
+        .btn-dark {
+            background: var(--navy);
+            color: var(--white);
+        }
+        
+        .btn-dark:hover {
+            background: var(--navy-light);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(10, 22, 40, 0.5);
+        }
+        
+        .btn-icon { transition: transform 0.3s var(--ease-smooth); }
+        .btn:hover .btn-icon { transform: translateX(5px); }
+
+        /* ══════════════════════════════════════════════════════════════
+           HERO - ADHD-Aware Messaging
+           ══════════════════════════════════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Animated organic shapes - representing the ADHD brain */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 15% 85%, rgba(201, 169, 98, 0.12) 0%, transparent 45%),
+                radial-gradient(ellipse at 85% 15%, rgba(30, 58, 95, 0.5) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 50%, rgba(201, 169, 98, 0.03) 0%, transparent 60%);
+        }
+        
+        /* Breathing circles - calming, intentional */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 169, 98, 0.15);
+            animation: breathe 8s ease-in-out infinite;
+        }
+        
+        .hero-orb-1 { width: 400px; height: 400px; top: 5%; left: -5%; animation-delay: 0s; }
+        .hero-orb-2 { width: 250px; height: 250px; bottom: 15%; right: 5%; animation-delay: -3s; }
+        .hero-orb-3 { width: 180px; height: 180px; top: 40%; right: 15%; animation-delay: -5s; }
+        
+        /* Subtle grid */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(201, 169, 98, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 169, 98, 0.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 950px;
+            padding: 0 2rem;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.5rem 1.25rem;
+            background: rgba(201, 169, 98, 0.1);
+            border: 1px solid rgba(201, 169, 98, 0.25);
+            color: var(--gold);
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 2rem;
+            animation: fadeUp 1s var(--ease-smooth) 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .hero-title {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            animation: fadeUp 1s var(--ease-smooth) 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .hero-title em {
+            font-style: italic;
+            color: var(--gold);
+            display: block;
+        }
+        
+        .hero-subtitle {
+            font-family: var(--font-display);
+            font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+            font-style: italic;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            animation: fadeUp 1s var(--ease-smooth) 0.6s forwards;
+            opacity: 0;
+        }
+        
+        .hero-description {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.65);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            animation: fadeUp 1s var(--ease-smooth) 0.8s forwards;
+            opacity: 0;
+        }
+        
+        /* ADHD-aware reassurance line */
+        .hero-reassurance {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            background: rgba(129, 178, 154, 0.1);
+            border: 1px solid rgba(129, 178, 154, 0.25);
+            color: var(--accent-calm);
+            font-size: 0.8rem;
+            margin-bottom: 2.5rem;
+            animation: fadeUp 1s var(--ease-smooth) 0.9s forwards;
+            opacity: 0;
+        }
+        
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            justify-content: center;
+            animation: fadeUp 1s var(--ease-smooth) 1s forwards;
+            opacity: 0;
+        }
+        
+        .hero-scroll {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            animation: fadeUp 1s var(--ease-smooth) 1.2s forwards;
+            opacity: 0;
+        }
+        
+        .hero-scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           SECTIONS - Base Styles
+           ══════════════════════════════════════════════════════════════ */
+        section { padding: var(--space-2xl) 0; }
+        
+        .section-light { background: var(--off-white); }
+        .section-white { background: var(--white); }
+        .section-champagne { background: var(--champagne-light); }
+        .section-navy { background: var(--navy); color: var(--white); }
+        .section-navy-deep { background: var(--black); color: var(--white); }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 1.1rem;
+            background: rgba(201, 169, 98, 0.1);
+            border: 1px solid rgba(201, 169, 98, 0.2);
+            color: var(--gold);
+            font-size: 0.65rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.25rem;
+        }
+        
+        .section-navy .section-badge {
+            background: rgba(201, 169, 98, 0.08);
+            border-color: rgba(201, 169, 98, 0.25);
+        }
+        
+        .section-title { margin-bottom: 1rem; }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--slate);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        
+        .section-navy .section-subtitle { color: rgba(255,255,255,0.7); }
+        
+        .section-divider {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 2rem auto;
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           TRUTH SECTION - Brand Anchor
+           ══════════════════════════════════════════════════════════════ */
+        .truth {
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .truth::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        
+        .truth-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .truth-statement {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+            font-weight: 400;
+            color: var(--navy);
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+        
+        .truth-statement em {
+            color: var(--gold);
+            font-style: italic;
+        }
+        
+        .truth-subtext {
+            font-size: 1.1rem;
+            color: var(--slate);
+        }
+        
+        .truth-subtext strong {
+            color: var(--navy);
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           ADHD REALITY - The Problems (Reframed)
+           ══════════════════════════════════════════════════════════════ */
+        .reality {
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reality::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -15%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(201, 169, 98, 0.06) 0%, transparent 60%);
+        }
+        
+        .reality-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto var(--space-lg);
+        }
+        
+        .reality-intro p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.15rem;
+        }
+        
+        .reality-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .reality-card {
+            padding: 2.25rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.5s var(--ease-smooth);
+            position: relative;
+        }
+        
+        .reality-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gold);
+            transform: scaleY(0);
+            transition: transform 0.5s var(--ease-smooth);
+        }
+        
+        .reality-card:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(201, 169, 98, 0.2);
+            transform: translateX(10px);
+        }
+        
+        .reality-card:hover::before { transform: scaleY(1); }
+        
+        .reality-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+        
+        .reality-card h4 {
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+        }
+        
+        .reality-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        
+        .reality-closing {
+            text-align: center;
+            margin-top: var(--space-lg);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .reality-closing-text {
+            font-family: var(--font-display);
+            font-size: clamp(1.35rem, 3vw, 1.75rem);
+            color: var(--white);
+            font-style: italic;
+        }
+        
+        .reality-closing-text em {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           CORE OS METHOD - ADHD-Aware Framework
+           ══════════════════════════════════════════════════════════════ */
+        .method {
+            background: var(--champagne-light);
+            position: relative;
+        }
+        
+        .method-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto var(--space-lg);
+        }
+        
+        .method-intro p {
+            font-size: 1.1rem;
+            color: var(--slate);
+        }
+        
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            background: var(--white);
+            border: 1px solid var(--champagne-dark);
+        }
+        
+        .method-card {
+            padding: 2.75rem 2rem;
+            text-align: center;
+            border-right: 1px solid var(--champagne-dark);
+            transition: all 0.5s var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .method-card:last-child { border-right: none; }
+        
+        .method-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            background: var(--navy);
+            transition: height 0.5s var(--ease-smooth);
+            z-index: 0;
+        }
+        
+        .method-card:hover::before { height: 100%; }
+        
+        .method-card-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .method-letter {
+            font-family: var(--font-display);
+            font-size: 4.5rem;
+            font-weight: 300;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 0.75rem;
+            transition: color 0.5s var(--ease-smooth);
+        }
+        
+        .method-word {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            transition: color 0.5s var(--ease-smooth);
+        }
+        
+        .method-card:hover .method-word { color: var(--white); }
+        
+        /* ADHD-specific insight */
+        .method-insight {
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-style: italic;
+            margin-bottom: 0.75rem;
+            transition: color 0.5s var(--ease-smooth);
+        }
+        
+        .method-card:hover .method-insight { color: var(--gold-light); }
+        
+        .method-desc {
+            font-size: 0.9rem;
+            color: var(--slate);
+            margin: 0;
+            transition: color 0.5s var(--ease-smooth);
+        }
+        
+        .method-card:hover .method-desc { color: rgba(255,255,255,0.8); }
+        
+        .method-tagline {
+            text-align: center;
+            margin-top: var(--space-lg);
+            padding: 2rem;
+            background: var(--white);
+            border: 1px solid var(--champagne-dark);
+            border-top: none;
+        }
+        
+        .method-tagline p {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-style: italic;
+            color: var(--navy);
+            margin: 0 auto;
+        }
+        
+        .method-tagline p em {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           DIAGNOSTIC QUIZ - ADHD Edition
+           ══════════════════════════════════════════════════════════════ */
+        .diagnostic {
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagnostic::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 0% 50%, rgba(201, 169, 98, 0.08) 0%, transparent 45%),
+                radial-gradient(ellipse at 100% 50%, rgba(201, 169, 98, 0.06) 0%, transparent 45%);
+        }
+        
+        .diagnostic-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+        
+        .diagnostic-text h2 {
+            color: var(--white);
+            margin-bottom: 1.25rem;
+        }
+        
+        .diagnostic-text h2 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+        
+        .diagnostic-text > p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1.25rem;
+        }
+        
+        /* Reassurance box */
+        .diagnostic-reassurance {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            background: rgba(129, 178, 154, 0.1);
+            border: 1px solid rgba(129, 178, 154, 0.2);
+            margin-bottom: 2rem;
+        }
+        
+        .diagnostic-reassurance-icon {
+            color: var(--accent-calm);
+            font-size: 1.25rem;
+        }
+        
+        .diagnostic-reassurance p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            margin: 0;
+            font-style: italic;
+        }
+        
+        .diagnostic-outcomes {
+            margin: 1.5rem 0;
+        }
+        
+        .diagnostic-outcome {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1.1rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.3s var(--ease-smooth);
+        }
+        
+        .diagnostic-outcome:hover {
+            background: rgba(201, 169, 98, 0.08);
+            border-color: rgba(201, 169, 98, 0.2);
+        }
+        
+        .diagnostic-outcome-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(201, 169, 98, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .diagnostic-outcome h4 {
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+        
+        .diagnostic-outcome p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+        
+        .diagnostic-visual {
+            position: relative;
+        }
+        
+        .diagnostic-card {
+            background: var(--white);
+            padding: 2.75rem;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+        }
+        
+        .diagnostic-card-badge {
+            display: inline-block;
+            padding: 0.45rem 1rem;
+            background: var(--champagne-light);
+            color: var(--navy);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.25rem;
+        }
+        
+        .diagnostic-card h3 {
+            color: var(--navy);
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .diagnostic-card > p {
+            color: var(--slate);
+            margin-bottom: 1.75rem;
+            font-size: 1rem;
+        }
+        
+        .diagnostic-card-note {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--slate);
+            font-style: italic;
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           SERVICES - Three Pathways
+           ══════════════════════════════════════════════════════════════ */
+        .services {
+            background: var(--off-white);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+        
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--champagne-dark);
+            transition: all 0.5s var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform 0.5s var(--ease-smooth);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+            border-color: var(--gold);
+        }
+        
+        .service-card:hover::before { transform: scaleX(1); }
+        
+        .service-badge {
+            display: inline-block;
+            padding: 0.35rem 0.9rem;
+            background: var(--champagne-light);
+            color: var(--navy);
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 1.25rem;
+        }
+        
+        .service-card h3 {
+            color: var(--navy);
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .service-card > p {
+            color: var(--slate);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        /* CORE lens indicator */
+        .service-core-lens {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.25rem;
+        }
+        
+        .core-lens-tag {
+            padding: 0.25rem 0.6rem;
+            background: rgba(201, 169, 98, 0.1);
+            border: 1px solid rgba(201, 169, 98, 0.25);
+            color: var(--gold);
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .service-features {
+            margin: 1.25rem 0;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--champagne-dark);
+        }
+        
+        .service-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+            color: var(--navy);
+        }
+        
+        .service-feature-icon { color: var(--gold); }
+        
+        .service-price {
+            margin-top: 1.75rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--champagne-dark);
+        }
+        
+        .service-price-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--slate);
+            margin-bottom: 0.35rem;
+        }
+        
+        .service-price-value {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            color: var(--navy);
+        }
+        
+        .service-price-value span {
+            font-size: 0.9rem;
+            color: var(--slate);
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           ABOUT - ADHD Founder Story
+           ══════════════════════════════════════════════════════════════ */
+        .about {
+            background: var(--champagne-light);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+        
+        .about-image {
+            position: relative;
+        }
+        
+        .about-image-placeholder {
+            aspect-ratio: 4/5;
+            background: var(--navy);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .about-image-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 15px;
+            border: 1px solid rgba(201, 169, 98, 0.25);
+        }
+        
+        .about-image-frame {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--gold);
+        }
+        
+        .about-image-frame-tl { top: -12px; left: -12px; border-right: none; border-bottom: none; }
+        .about-image-frame-br { bottom: -12px; right: -12px; border-left: none; border-top: none; }
+        
+        .about-text h2 {
+            color: var(--navy);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            margin-bottom: 1.25rem;
+        }
+        
+        .about-text h2 span { color: var(--gold); }
+        
+        /* ADHD identity statement */
+        .about-identity {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1rem;
+            background: rgba(201, 169, 98, 0.1);
+            border: 1px solid rgba(201, 169, 98, 0.2);
+            width: fit-content;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-identity p {
+            font-size: 0.85rem;
+            color: var(--navy);
+            margin: 0;
+            font-weight: 400;
+        }
+        
+        .about-highlight {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--gold);
+            margin: 1.75rem 0;
+            padding-left: 1.25rem;
+            border-left: 3px solid var(--gold);
+        }
+        
+        .about-text p { color: var(--slate); margin-bottom: 1rem; }
+        
+        .about-mission {
+            background: var(--white);
+            padding: 1.5rem;
+            border: 1px solid var(--champagne-dark);
+            margin-top: 1.75rem;
+        }
+        
+        .about-mission h4 {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--slate);
+            margin-bottom: 0.75rem;
+        }
+        
+        .about-mission p {
+            font-size: 1rem;
+            color: var(--navy);
+            margin: 0;
+            font-weight: 400;
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           TESTIMONIALS
+           ══════════════════════════════════════════════════════════════ */
+        .testimonials {
+            background: var(--white);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+        
+        .testimonial-card {
+            padding: 2.25rem;
+            background: var(--off-white);
+            border: 1px solid var(--champagne-dark);
+            transition: all 0.5s var(--ease-smooth);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: var(--gold);
+        }
+        
+        .testimonial-quote {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--navy);
+            margin-bottom: 1.75rem;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+        
+        .testimonial-quote::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -0.35rem;
+            font-size: 2.5rem;
+            color: var(--gold);
+            line-height: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+        
+        .testimonial-avatar {
+            width: 45px;
+            height: 45px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-info h4 {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--navy);
+            margin-bottom: 0.15rem;
+        }
+        
+        .testimonial-info p {
+            font-size: 0.8rem;
+            color: var(--slate);
+            margin: 0;
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           FAQ
+           ══════════════════════════════════════════════════════════════ */
+        .faq {
+            background: var(--off-white);
+        }
+        
+        .faq-grid {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--champagne-dark);
+        }
+        
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--navy);
+            transition: color 0.3s var(--ease-smooth);
+        }
+        
+        .faq-question:hover { color: var(--gold); }
+        
+        .faq-icon {
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--champagne-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.1rem;
+            transition: all 0.3s var(--ease-smooth);
+            flex-shrink: 0;
+        }
+        
+        .faq-item.active .faq-icon {
+            background: var(--gold);
+            color: var(--navy);
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s var(--ease-smooth);
+        }
+        
+        .faq-item.active .faq-answer { max-height: 300px; }
+        
+        .faq-answer p {
+            padding-bottom: 1.5rem;
+            color: var(--slate);
+            font-size: 0.95rem;
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           OPT-IN
+           ══════════════════════════════════════════════════════════════ */
+        .optin {
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .optin::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 25% 0%, rgba(201, 169, 98, 0.12) 0%, transparent 45%),
+                radial-gradient(ellipse at 75% 100%, rgba(201, 169, 98, 0.08) 0%, transparent 45%);
+        }
+        
+        .optin-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        
+        .optin-content h2 {
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+        
+        .optin-content > p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2rem;
+        }
+        
+        .optin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+        
+        .optin-form input {
+            width: 100%;
+            padding: 1.1rem 1.25rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s var(--ease-smooth);
+        }
+        
+        .optin-form input::placeholder { color: rgba(255,255,255,0.5); }
+        .optin-form input:focus { border-color: var(--gold); background: rgba(255,255,255,0.08); }
+        
+        .optin-form .btn { width: 100%; }
+        
+        .optin-privacy {
+            margin-top: 1.25rem;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           FOOTER
+           ══════════════════════════════════════════════════════════════ */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: var(--space-lg) 0 var(--space-md);
+        }
+        
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.75rem;
+        }
+        
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            color: var(--white);
+        }
+        
+        .footer-logo span { color: var(--gold); font-style: italic; }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.75rem;
+        }
+        
+        .footer-link {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+            transition: color 0.3s var(--ease-smooth);
+        }
+        
+        .footer-link:hover { color: var(--gold); }
+        
+        .footer-social {
+            display: flex;
+            gap: 0.9rem;
+        }
+        
+        .social-icon {
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.6);
+            transition: all 0.3s var(--ease-smooth);
+        }
+        
+        .social-icon:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        
+        .footer-bottom {
+            margin-top: 2.5rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           RESPONSIVE
+           ══════════════════════════════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .reality-grid,
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            
+            .method-grid { grid-template-columns: repeat(2, 1fr); }
+            .method-card { border-bottom: 1px solid var(--champagne-dark); }
+            .method-card:nth-child(2), .method-card:nth-child(4) { border-right: none; }
+            
+            .diagnostic-content,
+            .about-content { grid-template-columns: 1fr; gap: var(--space-lg); }
+            
+            .about-image { order: -1; max-width: 350px; margin: 0 auto; }
+        }
+        
+        @media (max-width: 768px) {
+            section { padding: var(--space-xl) 0; }
+            
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            
+            .hero { min-height: auto; padding: 130px 1.5rem 70px; }
+            .hero-scroll { display: none; }
+            .hero-orb { display: none; }
+            
+            .reality-grid,
+            .services-grid,
+            .method-grid,
+            .testimonials-grid { grid-template-columns: 1fr; }
+            
+            .method-card { border-right: none; }
+            
+            .hero-cta-group { flex-direction: column; align-items: center; }
+            .hero-cta-group .btn { width: 100%; max-width: 280px; }
+            
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Dream<span>Crafter</span></a>
+            <ul class="nav-links">
+                <li><a href="#method" class="nav-link">CORE OS™</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#diagnostic" class="nav-link">Quiz</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+            <a href="#diagnostic" class="nav-cta">Take the Quiz</a>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Premium Operations Architecture
+        </div>
+        <h1 class="hero-title">Turn Chaos Into<em>Choreography.</em></h1>
+        <p class="hero-subtitle">Your business shouldn't feel like controlled chaos. With CORE OS™, your backend finally matches your brilliance — without boxing you in.</p>
+        <p class="hero-description">Whether you need strategic operations, execution support, or system design — we build structure that works with your brain, not against it.</p>
+        
+        <div class="hero-reassurance">
+            <span>✓</span> No shame. No hustle culture. Just clarity.
+        </div>
+        
+        <div class="hero-cta-group">
+            <a href="#diagnostic" class="btn btn-primary">
+                What Does My Business Need?
+                <span class="btn-icon">→</span>
+            </a>
+            <a href="#method" class="btn btn-outline">Explore CORE OS™</a>
+        </div>
+    </div>
+    
+    <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="hero-scroll-line"></div>
+    </div>
+</section>
+
+<!-- BRAND TRUTH -->
+<section class="truth">
+    <div class="container">
+        <div class="truth-content">
+            <p class="truth-statement">CORE OS™ was built by an ADHD founder for ADHD-led businesses who are tired of being told to <em>"just get organized."</em></p>
+            <p class="truth-subtext">You are not selling productivity. You are selling <strong>relief, structure, and accountability</strong> — without shame.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ADHD REALITY - Reframed Problems -->
+<section class="reality section-navy" id="problems">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Sound Familiar?</span>
+            <h2 class="section-title">This Isn't a You Problem</h2>
+            <p class="section-subtitle">It's a structure problem. And structure can be designed.</p>
+        </div>
+        
+        <div class="reality-intro">
+            <p>ADHD brains aren't broken — they're just running on systems that weren't built for how you think. Here's what that actually looks like in business:</p>
+        </div>
+        
+        <div class="reality-grid">
+            <div class="reality-card">
+                <p class="reality-label">The Symptom</p>
+                <h4>Everything feels equally urgent</h4>
+                <p>You're not bad at prioritizing — you just don't have a system that tells you what actually matters right now.</p>
+            </div>
+            <div class="reality-card">
+                <p class="reality-label">The Symptom</p>
+                <h4>Tasks live in your head</h4>
+                <p>If it's not written down somewhere you'll actually see it, it might as well not exist. And you know it.</p>
+            </div>
+            <div class="reality-card">
+                <p class="reality-label">The Symptom</p>
+                <h4>You start strong, then stall</h4>
+                <p>Motivation got you here. But motivation is unreliable. You need rhythm — not another productivity hack.</p>
+            </div>
+            <div class="reality-card">
+                <p class="reality-label">The Symptom</p>
+                <h4>Hiring help made it worse</h4>
+                <p>You brought on a VA, but now you're managing chaos AND another person. Structure has to come first.</p>
+            </div>
+            <div class="reality-card">
+                <p class="reality-label">The Symptom</p>
+                <h4>You avoid your own dashboards</h4>
+                <p>Looking at the numbers feels overwhelming because there's no one place to see the truth. So you guess.</p>
+            </div>
+            <div class="reality-card">
+                <p class="reality-label">The Symptom</p>
+                <h4">If you stop, everything stops</h4>
+                <p>Your business runs on your memory, not systems. That's exhausting — and it's not sustainable.</p>
+            </div>
+        </div>
+        
+        <div class="reality-closing">
+            <div class="section-divider"></div>
+            <p class="reality-closing-text">You don't need more willpower.<br>You need <em>visibility and structure.</em></p>
+        </div>
+    </div>
+</section>
+
+<!-- CORE OS METHOD - ADHD Edition -->
+<section class="method section-champagne" id="method">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">The Framework</span>
+            <h2 class="section-title">The CORE OS™ Method</h2>
+            <p class="section-subtitle">Chaos → Choreography (without boxing you in)</p>
+        </div>
+        
+        <div class="method-intro">
+            <p>You don't need another productivity system that assumes perfect memory and linear thinking. CORE OS™ was designed for how your brain actually works.</p>
+        </div>
+        
+        <div class="method-grid">
+            <div class="method-card">
+                <div class="method-card-content">
+                    <span class="method-letter">C</span>
+                    <h4 class="method-word">Clarity</h4>
+                    <p class="method-insight">ADHD brains don't struggle with ideas — they struggle with prioritization.</p>
+                    <p class="method-desc">We define what actually matters so everything isn't urgent.</p>
+                </div>
+            </div>
+            <div class="method-card">
+                <div class="method-card-content">
+                    <span class="method-letter">O</span>
+                    <h4 class="method-word">Ownership</h4>
+                    <p class="method-insight">If it lives in your head, it will get dropped.</p>
+                    <p class="method-desc">We assign ownership to people or automation so your brain can rest.</p>
+                </div>
+            </div>
+            <div class="method-card">
+                <div class="method-card-content">
+                    <span class="method-letter">R</span>
+                    <h4 class="method-word">Rhythm</h4>
+                    <p class="method-insight">Consistency beats motivation.</p>
+                    <p class="method-desc">We design weekly cadences that work with ADHD energy — not against it.</p>
+                </div>
+            </div>
+            <div class="method-card">
+                <div class="method-card-content">
+                    <span class="method-letter">E</span>
+                    <h4 class="method-word">Elevation</h4>
+                    <p class="method-insight">You don't need more willpower — you need visibility.</p>
+                    <p class="method-desc">Dashboards replace mental tracking so you can lead without burnout.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="method-tagline">
+            <p>CORE OS™ is what happens when <em>structure finally respects how your brain works.</em></p>
+        </div>
+    </div>
+</section>
+
+<!-- DIAGNOSTIC QUIZ -->
+<section class="diagnostic section-navy" id="diagnostic">
+    <div class="container">
+        <div class="diagnostic-content">
+            <div class="diagnostic-text">
+                <span class="section-badge">Free Assessment</span>
+                <h2>What does your business <em>really</em> need?</h2>
+                <p>Most founders know something's broken — but not which solution will actually fix it. This isn't a productivity quiz. It's an operations diagnostic built for founders whose brains don't do "perfect systems."</p>
+                
+                <div class="diagnostic-reassurance">
+                    <span class="diagnostic-reassurance-icon">✓</span>
+                    <p>No shame. No judgment. Just clarity on your next right step.</p>
+                </div>
+                
+                <div class="diagnostic-outcomes">
+                    <div class="diagnostic-outcome">
+                        <div class="diagnostic-outcome-icon">🎯</div>
+                        <div>
+                            <h4>VA-Ready (Execution Support)</h4>
+                            <p>You know what needs doing — you need follow-through.</p>
+                        </div>
+                    </div>
+                    <div class="diagnostic-outcome">
+                        <div class="diagnostic-outcome-icon">🚀</div>
+                        <div>
+                            <h4>OBM Support (Strategic Partner)</h4>
+                            <p>You need accountability + someone who can think with you.</p>
+                        </div>
+                    </div>
+                    <div class="diagnostic-outcome">
+                        <div class="diagnostic-outcome-icon">⚙️</div>
+                        <div>
+                            <h4>Systems First (Before Any Hire)</h4>
+                            <p>Hiring right now would increase your stress. Structure first.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="diagnostic-visual">
+                <div class="diagnostic-card">
+                    <span class="diagnostic-card-badge">2-Minute Quiz</span>
+                    <h3>VA, OBM, or Systems First?</h3>
+                    <p>Find out what kind of support your brain (and business) actually needs.</p>
+                    <!-- UPDATE: Replace # with your quiz link -->
+                    <a href="#" class="btn btn-dark">
+                        Start the Quiz
+                        <span class="btn-icon">→</span>
+                    </a>
+                    <p class="diagnostic-card-note">Built for ADHD founders. No hustle culture.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services section-light" id="services">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Three Pathways</span>
+            <h2 class="section-title">Find Your Right-Fit Support</h2>
+            <p class="section-subtitle">Every brain needs something different. Here's how we meet you where you are.</p>
+        </div>
+        
+        <div class="services-grid">
+            <!-- VA Services -->
+            <div class="service-card">
+                <span class="service-badge">Execution Support</span>
+                <h3>VA Retainer</h3>
+                <p>You don't need strategy — you need follow-through. Your brain does best when someone else handles execution.</p>
+                <div class="service-core-lens">
+                    <span class="core-lens-tag">Ownership</span>
+                    <span class="core-lens-tag">Rhythm</span>
+                </div>
+                <div class="service-features">
+                    <div class="service-feature"><span class="service-feature-icon">✓</span> Task execution & follow-through</div>
+                    <div class="service-feature"><span class="service-feature-icon">✓</span> Inbox & calendar management</div>
+                    <div class="service-feature"><span class="service-feature-icon">✓</span> Admin & delivery support</div>
+                    <div class="service-feature"><span class="service-feature-icon">✓</span> Consistent weekly rhythm</div>
+                </div>
+                <div class="service-price">
+                    <p class="service-price-label">Starting at</p>
+                    <p class="service-price-value">$1,500<span>/month</span></p>
+                </div>
+            </div>
+            
+            <!-- OBM Services -->
+            <div class="service-card">
+                <span class="service-badge">Strategic Partner</span>
+                <h3>OBM Partnership</h3>
+                <p>You don't need more ideas — you need a partner who can hold structure with you. This is where ADHD founders thrive.</p>
+                <div class="service-core-lens">
+                    <span class="core-lens-tag">Clarity</span>
+                    <span class="core-lens-tag">Ownership</span>
+                    <span class="core-lens-tag">Elevation</span>
+                </div>
+                <div class="service-features">
+                    <div class="service-feature"><span class="service-feature-icon">✓</span> Operations strategy & oversight</div>
+                    <div class="service-feature"><span class="service-feature-icon">✓</span> Team leadership & accountability</div>
+                    <div class="service-feature"><span class="service-feature-icon">✓</span> Project & launch management</div>
+                    <div class="service-feature"><span class="service-feature-icon">✓</span> CEO bandwidth protection</div>
+                </div>
+                <div class="service-price">
+                    <p class="service-price-label">Starting at</p>
+                    <p class="service-price-value">$3,500<span>/month</span></p>
+                </div>
+            </div>
+            
+            <!-- Systems Services -->
+            <div class="service-card">
+                <span class="service-badge">Ops Design</span>
+                <h3>Systems Build</h3>
+                <p>Hiring help right now would increase your stress. Your brain needs structure before delegation — and that's okay.</p>
+                <div class="service-core-lens">
+                    <span class="core-lens-tag">Clarity</span>
+                    <span class="core-lens-tag">Ownership</span>
+                </div>
+                <div class="service-features">
+                    <div class="service-feature"><span class="service-feature-icon">✓</span> Airtable command centers</div>
+                    <div class="service-feature"><span class="service-feature-icon">✓</span> Automated workflows</div>
+                    <div class="service-feature"><span class="service-feature-icon">✓</span> Dashboards & visibility</div>
+                    <div class="service-feature"><span class="service-feature-icon">✓</span> SOPs your brain can follow</div>
+                </div>
+                <div class="service-price">
+                    <p class="service-price-label">Starting at</p>
+                    <p class="service-price-value">$500<span> one-time</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section-champagne" id="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-image">
+                <div class="about-image-frame about-image-frame-tl"></div>
+                <div class="about-image-frame about-image-frame-br"></div>
+                <!-- PLACEHOLDER: Your headshot -->
+                <div class="about-image-placeholder">
+                    <span style="font-size:3.5rem;margin-bottom:1rem;">👤</span>
+                    <p>Your Professional Headshot</p>
+                </div>
+            </div>
+            
+            <div class="about-text">
+                <span class="section-badge">Meet Your Architect</span>
+                <h2>I'm Tre — <span>founder, OBM, Airtable architect, and a CEO with ADHD.</span></h2>
+                
+                <div class="about-identity">
+                    <span>🧠</span>
+                    <p>ADHD founder building for ADHD-led businesses</p>
+                </div>
+                
+                <p>I built CORE OS™ because I was tired of systems that assumed perfect memory, linear thinking, and endless focus.</p>
+                
+                <p class="about-highlight">My work isn't about "fixing" ADHD. It's about designing businesses that support it — with clarity, accountability, and structure that actually sticks.</p>
+                
+                <p>I build backends the way Beyoncé builds albums: intentional, engineered, and made to last. Not loud. Not messy. Not random. <strong>Precision.</strong></p>
+                
+                <div class="about-mission">
+                    <h4>This work is for</h4>
+                    <p>The CEO who's done surviving their own success — and ready for systems that respect how their brain actually works.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials section-white" id="testimonials">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Proof</span>
+            <h2 class="section-title">Receipts.</h2>
+            <p class="section-subtitle">Real results. Real clarity. Real relief.</p>
+        </div>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-quote">Everything finally lived in one place. I stopped searching and started leading.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">C</div>
+                    <div class="testimonial-info">
+                        <h4>Client Name</h4>
+                        <p>Course Creator</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-quote">For the first time, my brain could rest because the system held the details.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">C</div>
+                    <div class="testimonial-info">
+                        <h4>Client Name</h4>
+                        <p>Online Coach</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-quote">I got hours back every week because the dashboard told the truth.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">C</div>
+                    <div class="testimonial-info">
+                        <h4>Client Name</h4>
+                        <p>Program Director</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq section-light" id="faq">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Questions</span>
+            <h2 class="section-title">Frequently Asked</h2>
+        </div>
+        
+        <div class="faq-grid">
+            <div class="faq-item">
+                <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <span>Do I need an ADHD diagnosis to work with you?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Not at all. If you identify as ADHD, neurodivergent, or just "my brain works differently" — and traditional systems have failed you — this approach will resonate. No diagnosis required.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <span>How do I know if I need a VA or an OBM?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>If you know exactly what needs to be done and just need execution, a VA is your path. If you're overwhelmed by strategy AND execution — and need someone who can think with you — that's OBM territory. Take the quiz to find out.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <span>Should I get systems built before hiring?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Often, yes. Without clear systems, hiring can actually create more chaos — especially for ADHD brains. If everything lives in your head, delegation becomes exhausting. Systems first means your hire can hit the ground running.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <span>What makes CORE OS™ different?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Most ops systems assume perfect memory and linear thinking. CORE OS™ was designed by an ADHD founder specifically for brains that don't work that way. It's not about organizing your mess — it's about building structure your brain can actually follow.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OPTIN -->
+<section class="optin section-navy" id="optin">
+    <div class="container">
+        <div class="optin-content">
+            <span class="section-badge">Free Resource</span>
+            <h2>Get the CORE Checklist</h2>
+            <p>If your delivery system is scattered across systems and spreadsheets, this checklist shows you exactly what's missing — designed for ADHD brains.</p>
+            <!-- UPDATE: Replace form action with your email service -->
+            <form class="optin-form" action="#" method="POST">
+                <input type="text" name="name" placeholder="Your name" required>
+                <input type="email" name="email" placeholder="Your email" required>
+                <button type="submit" class="btn btn-primary">Send It To Me</button>
+            </form>
+            <p class="optin-privacy">No spam. No hustle culture. Just real ops help.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <a href="#" class="footer-logo">Dream<span>Crafter</span></a>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms</a>
+                <a href="mailto:info@dreamcrafterco.com" class="footer-link">Contact</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon" aria-label="Instagram">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="#" class="social-icon" aria-label="LinkedIn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>DreamCrafter OPS™ © 2026. Built by an ADHD founder, for ADHD-led businesses.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Navigation scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            const offset = nav.offsetHeight;
+            window.scrollTo({
+                top: target.getBoundingClientRect().top + window.pageYOffset - offset,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
